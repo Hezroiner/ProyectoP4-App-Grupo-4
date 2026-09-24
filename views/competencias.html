@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Competencias</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>
+            <span>Parte 2 - PostgreSQL</span>
+            <span>Juegos de videos y competencias</span>
+            <span>Vista 2 - Competencias</span>
+        </h1>
+
+        <div class="navegacion">
+            <a href="/videojuegos">Videojuegos</a>
+            <a href="/competencias">Competencias</a>
+        </div>
+
+        <section class="formulario">
+            <h2>Datos de la competencia</h2>
+            <form id="formCompetencia">
+                <input type="hidden" id="competenciaId">
+
+                <label for="videojuegoCompetencia">Videojuego</label>
+                <select id="videojuegoCompetencia" required></select>
+
+                <label for="nombreCompetencia">Nombre de la competencia</label>
+                <input type="text" id="nombreCompetencia" required>
+
+                <label for="fechaInicio">Fecha de inicio</label>
+                <input type="date" id="fechaInicio" required>
+
+                <label for="fechaFinal">Fecha final</label>
+                <input type="date" id="fechaFinal" required>
+
+                <label for="sedeCompetencia">Sede</label>
+                <input type="text" id="sedeCompetencia" required>
+
+                <label for="premioTotal">Premio total</label>
+                <input type="number" id="premioTotal" step="0.01" required>
+
+                <label for="formatoTorneo">Formato del torneo</label>
+                <input type="text" id="formatoTorneo" required>
+
+                <label for="estadoCompetencia">Estado</label>
+                <input type="text" id="estadoCompetencia" required>
+
+                <label for="bannerCompetencia">Banner PNG</label>
+                <input type="file" id="bannerCompetencia" accept="image/png">
+
+                <div class="botones">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="btnCancelarCompetencia">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="tabla-contenedor">
+            <h2>Competencias registradas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Videojuego</th><th>Competencia</th><th>Inicio</th><th>Final</th>
+                        <th>Sede</th><th>Premio</th><th>Formato</th><th>Estado</th><th>Banner</th><th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCompetencias"></tbody>
+            </table>
+        </section>
+
+        <section class="formulario separador">
+            <h2>Datos del encuentro</h2>
+            <form id="formEncuentro">
+                <input type="hidden" id="encuentroId">
+
+                <label for="competenciaEncuentro">Competencia</label>
+                <select id="competenciaEncuentro" required></select>
+
+                <label for="equipo1Encuentro">Equipo 1</label>
+                <select id="equipo1Encuentro" required></select>
+
+                <label for="equipo2Encuentro">Equipo 2</label>
+                <select id="equipo2Encuentro" required></select>
+
+                <label for="rondaEncuentro">Ronda</label>
+                <input type="text" id="rondaEncuentro" required>
+
+                <label for="fechaEncuentro">Fecha</label>
+                <input type="date" id="fechaEncuentro" required>
+
+                <label for="horaEncuentro">Hora</label>
+                <input type="time" id="horaEncuentro" required>
+
+                <label for="puntajeEquipo1">Puntaje equipo 1</label>
+                <input type="number" id="puntajeEquipo1" required>
+
+                <label for="puntajeEquipo2">Puntaje equipo 2</label>
+                <input type="number" id="puntajeEquipo2" required>
+
+                <label for="formatoSerie">Formato de serie</label>
+                <input type="text" id="formatoSerie" required>
+
+                <label for="estadoEncuentro">Estado</label>
+                <input type="text" id="estadoEncuentro" required>
+
+                <label for="imagenEncuentro">Imagen PNG</label>
+                <input type="file" id="imagenEncuentro" accept="image/png">
+
+                <div class="botones">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="btnCancelarEncuentro">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="tabla-contenedor">
+            <h2>Encuentros registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Competencia</th><th>Equipo 1</th><th>Equipo 2</th><th>Ronda</th>
+                        <th>Fecha</th><th>Hora</th><th>Puntaje 1</th><th>Puntaje 2</th><th>Serie</th>
+                        <th>Estado</th><th>Imagen</th><th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaEncuentros"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/js/competencias.js"></script>
+</body>
+</html>

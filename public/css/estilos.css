@@ -1,0 +1,354 @@
+* {
+    box-sizing: border-box;
+}
+ 
+body {
+ 
+    margin: 0;
+ 
+    font-family: Arial, sans-serif;
+ 
+    background-color: #f2f2f2;
+ 
+    color: #333;
+}
+ 
+ 
+.contenedor {
+    width: calc(100% - 32px);
+    max-width: 1800px;
+    margin: 24px auto;
+    background-color: white;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+ 
+ 
+h1 {
+ 
+    text-align: center;
+ 
+    margin-bottom: 30px;
+}
+ 
+ 
+h2 {
+ 
+    margin-top: 20px;
+ 
+    border-bottom: 1px solid #ddd;
+ 
+    padding-bottom: 10px;
+}
+ 
+ 
+.formulario {
+ 
+    margin-bottom: 30px;
+}
+ 
+ 
+label {
+ 
+    display: block;
+ 
+    margin-top: 15px;
+ 
+    margin-bottom: 5px;
+ 
+    font-weight: bold;
+}
+ 
+ 
+input {
+ 
+    width: 100%;
+ 
+    padding: 10px;
+ 
+    border: 1px solid #ccc;
+ 
+    border-radius: 5px;
+ 
+    font-size: 16px;
+}
+ 
+ 
+.botones {
+ 
+    margin-top: 20px;
+ 
+    display: flex;
+ 
+    gap: 10px;
+}
+ 
+ 
+button {
+ 
+    padding: 10px 20px;
+ 
+    border: none;
+ 
+    border-radius: 5px;
+ 
+    cursor: pointer;
+ 
+    font-size: 15px;
+}
+ 
+ 
+button[type="submit"] {
+ 
+    background-color: #0df689;
+ 
+    color: white;
+}
+ 
+ 
+#btnCancelar {
+ 
+    background-color: #6c757d;
+ 
+    color: white;
+}
+ 
+ 
+table {
+ 
+    width: 100%;
+ 
+    border-collapse: collapse;
+ 
+    margin-top: 20px;
+}
+ 
+ 
+th,
+td {
+ 
+    border: 1px solid #ddd;
+ 
+    padding: 12px;
+ 
+    text-align: center;
+}
+ 
+ 
+th {
+ 
+    background-color: #64696e;
+ 
+    color: white;
+}
+ 
+ 
+tr:nth-child(even) {
+ 
+    background-color: #f8f8f8;
+}
+ 
+ 
+.btn-editar {
+ 
+    background-color: #079cff;
+ 
+    color: black;
+ 
+    margin-right: 5px;
+}
+ 
+ 
+.btn-eliminar {
+ 
+    background-color: #f4a3ab;
+ 
+    color: white;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.navegacion {
+    margin-bottom: 20px;
+}
+
+.navegacion a {
+    margin-right: 15px;
+}
+
+.imagen-tabla {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.separador {
+    margin-top: 45px;
+}
+
+
+/* ===== ANCHO MEJORADO ===== */
+/* Mantiene la estructura original del profesor y mejora solo la visualización. */
+
+.formulario {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.tabla-contenedor {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.tabla-contenedor table {
+    width: 100%;
+    min-width: 1280px;
+    table-layout: auto;
+}
+
+.tabla-contenedor th,
+.tabla-contenedor td {
+    padding: 10px 9px;
+    vertical-align: middle;
+    line-height: 1.25;
+}
+
+.tabla-contenedor th {
+    white-space: nowrap;
+}
+
+.tabla-contenedor td {
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+/* La columna de acciones mantiene un ancho cómodo. */
+.tabla-contenedor th:last-child,
+.tabla-contenedor td:last-child {
+    min-width: 115px;
+    white-space: nowrap;
+}
+
+.tabla-contenedor .btn-editar,
+.tabla-contenedor .btn-eliminar {
+    min-width: 84px;
+    margin: 2px 0;
+}
+
+.imagen-tabla {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (min-width: 1400px) {
+    .contenedor {
+        width: calc(100% - 48px);
+        max-width: 1800px;
+        padding: 28px;
+    }
+
+    .tabla-contenedor table {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .contenedor {
+        width: calc(100% - 16px);
+        margin: 12px auto;
+        padding: 14px;
+    }
+
+    .tabla-contenedor table {
+        min-width: 1200px;
+        font-size: 14px;
+    }
+
+    .imagen-tabla {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* ===== CORRECCION ENCABEZADO Y NAVEGACION ===== */
+/* El ancho amplio se mantiene únicamente para las tablas. El encabezado
+   permanece visualmente centrado y no se desplaza hacia la derecha. */
+h1 {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 18px auto;
+    text-align: center;
+    line-height: 1.15;
+}
+
+h1 span {
+    display: block;
+}
+
+.navegacion {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 28px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+}
+
+.navegacion a {
+    margin-right: 0;
+}
+
+@media (max-width: 900px) {
+    h1 {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .navegacion {
+        justify-content: flex-start;
+        gap: 18px;
+        overflow-x: auto;
+    }
+}
+
+/* ===== LOGIN ===== */
+/* Solo lo que el login necesita; el resto reutiliza los estilos de arriba. */
+
+.contenedor-login {
+    width: calc(100% - 32px);
+    max-width: 700px;
+    margin: 60px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contenedor-login h1 {
+    margin-bottom: 20px;
+}
+
+#mensaje {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #C0392B;
+}
+
