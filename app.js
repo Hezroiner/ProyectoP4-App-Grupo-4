@@ -8,6 +8,8 @@ const pool = require("./config/postgres");
 const authRoutes = require("./routes/authRoutes");
 const juegosRoutes = require("./routes/juegosRoutes");
 const competenciasRoutes = require("./routes/competenciasRoutes");
+const JuegoVRoutes = require("./routes/JuegoVRoutes");
+const CompetenciaRoutes =  require("./routes/CompetenciaRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +28,17 @@ app.use("/", authRoutes);
 app.use("/api/juegos", juegosRoutes);
 app.use("/api/competencias", competenciasRoutes);
 
+// Rutas de la Parte 3 MONGODB.
+app.use(
+    "/api/juegos",
+    JuegoVRoutes
+);
+
+app.use(
+    "/api/competencias",
+    CompetenciaRoutes
+);
+
 // Vista 1 - Videojuegos y equipos.
 app.get("/videojuegos", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "videojuegos.html"));
@@ -35,6 +48,39 @@ app.get("/videojuegos", (req, res) => {
 app.get("/competencias", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "competencias.html"));
 });
+
+// Vista MongoDB - Juegos
+app.get(
+    "/mongo/juegos",
+    (req, res) => {
+
+        res.sendFile(
+            path.join(
+                __dirname,
+                "views",
+                "juegosM.html"
+            )
+        );
+
+    }
+);
+
+
+// Vista MongoDB - Competencias
+app.get(
+    "/mongo/competencias",
+    (req, res) => {
+
+        res.sendFile(
+            path.join(
+                __dirname,
+                "views",
+                "competenciaM.html"
+            )
+        );
+
+    }
+);
 
 async function iniciarServidor() {
     try {

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Competencias
+    </title>
+
+    <link rel="stylesheet" href="/css/estilos.css">
+
+</head>
+
+
+<body>
+
+    <div class="contenedor">
+
+
+         <h1>
+        Parte 3 - MongoDB <br>
+Juegos de videos y competencias<br>
+Vista 3 - Competencias
+    </h1>
+
+        
+
+
+        <!-- =========================================
+             FORMULARIO JUEGOS
+        ========================================== -->
+       <div class="navegacion">
+    <a href="/videojuegos">
+        Videojuegos PostgreSQL
+    </a>
+
+    <a href="/competencias">
+        Competencias PostgreSQL
+    </a>
+
+    <a href="/mongo/juegos">
+        Juegos MongoDB
+    </a>
+
+    <a href="/mongo/competencias">
+        Competencias MongoDB
+    </a>
+</div>
+        <div class="formulario">
+
+
+            <label>
+                ID Competencia
+            </label>
+
+            <input type="text" id="CompetenciaId" placeholder="COMP-001">
+
+
+            <label>
+                Nombre Competencia
+            </label>
+
+            <input type="text" id="nombreCompetencia">
+
+
+            <label>
+                ID Juego Relacionado
+            </label>
+
+            <input type="text" id="JuegoRelacionadoId" placeholder="JUEGO-01">
+
+
+            <label>
+                Organizador
+            </label>
+
+            <input type="text" id="organizador">
+
+
+            <label>
+                Tipo Competencia
+            </label>
+
+            <input type="text" id="tipoCompetencia">
+
+
+            <label>
+                Modalidad
+            </label>
+
+            <input type="text" id="modalidad">
+
+
+            <label>
+                Categoría
+            </label>
+
+            <input type="text" id="categoria">
+
+
+            <label>
+                País
+            </label>
+
+            <input type="text" id="pais">
+
+
+            <label>
+                Ciudad
+            </label>
+
+            <input type="text" id="ciudad">
+
+
+            <label>
+                Lugar
+            </label>
+
+            <input type="text" id="lugar">
+
+
+            <label>
+                Fecha Inicio
+            </label>
+
+            <input type="date" id="fechaInicio">
+
+
+            <label>
+                Fecha Fin
+            </label>
+
+            <input type="date" id="fechaFin">
+
+
+            <label>
+                Hora Inicio
+            </label>
+
+            <input type="time" id="horaInicio">
+
+
+            <label>
+                Cupo Equipos
+            </label>
+
+            <input type="number" id="cupoEquipos">
+
+
+            <label>
+                Participantes por Equipo
+            </label>
+
+            <input type="number" id="participantesPorEquipo">
+
+
+            <label>
+                Total Participantes
+            </label>
+
+            <input type="number" id="totalParticipantes">
+
+
+            <label>
+                Premio Primer Lugar
+            </label>
+
+            <input type="number" id="premioPrimerLugar">
+
+
+            <label>
+                Premio Segundo Lugar
+            </label>
+
+            <input type="number" id="premioSegundoLugar">
+
+
+            <label>
+                Premio Tercer Lugar
+            </label>
+
+            <input type="number" id="premioTercerLugar">
+
+
+            <label>
+                Costo Inscripción
+            </label>
+
+            <input type="number" id="costoInscripcion">
+
+
+            <label>
+                Estado
+            </label>
+
+            <input type="text" id="estado">
+
+
+            <label>
+                Formato Torneo
+            </label>
+
+            <input type="text" id="formatoTorneo">
+
+
+            <label>
+                Plataforma Competencia
+            </label>
+
+            <input type="text" id="plataformaCompetencia">
+
+
+            <label>
+                Patrocinador
+            </label>
+
+            <input type="text" id="patrocinador">
+
+
+            <label>
+                Imagen
+            </label>
+
+            <input type="file" id="imagen" accept="image/jpg, image/jpeg, image/png">
+
+            <img id="vistaPreviaImagen" width="120" alt="Vista previa">
+
+        </div>
+
+        <!-- =========================================
+         MONGODB
+    ========================================== -->
+
+        <section class="seccion mongo">
+
+            <h2>
+                MongoDB + DAO
+            </h2>
+
+
+            <div class="botones">
+
+                <button onclick="crearMongo()">
+                    CREAR
+                </button>
+
+
+                <button onclick="consultarMongo()">
+                    CONSULTAR
+                </button>
+
+
+                <button onclick="actualizarMongo()">
+                    ACTUALIZAR
+                </button>
+
+
+                <button onclick="eliminarMongo()">
+                    ELIMINAR
+                </button>
+
+
+                <button onclick="mostrarMongo()">
+                    MOSTRAR TODOS
+                </button>
+                <button type="button" onclick="cargarJuegoRelacionado()">
+                    Cargar juego relacionado
+                </button>
+
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID Competencia</th>
+                            <th>Nombre</th>
+                            <th>Juego Relacionado</th>
+                            <th>Organizador</th>
+                            <th>Tipo</th>
+                            <th>Modalidad</th>
+                            <th>Categoría</th>
+                            <th>País</th>
+                            <th>Ciudad</th>
+                            <th>Lugar</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Hora Inicio</th>
+                            <th>Cupo Equipos</th>
+                            <th>Participantes por Equipo</th>
+                            <th>Total Participantes</th>
+                            <th>Premio Primer Lugar</th>
+                            <th>Premio Segundo Lugar</th>
+                            <th>Premio Tercer Lugar</th>
+                            <th>Costo Inscripción</th>
+                            <th>Estado</th>
+                            <th>Formato Torneo</th>
+                            <th>Plataforma</th>
+                            <th>Patrocinador</th>
+                            <th>Imagen</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tablaMongo"></tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+        <!-- =========================================
+         VISTA 2 - COMPETENCIAS
+    ========================================== -->
+
+
+
+        <div id="mensaje"></div>
+
+
+    </div>
+
+
+    <script src="/js/competenciasM.js"></script>
+
+
+</body>
+
+</html>
