@@ -10,6 +10,8 @@ const juegosRoutes = require("./routes/juegosRoutes");
 const competenciasRoutes = require("./routes/competenciasRoutes");
 const JuegoVRoutes = require("./routes/JuegoVRoutes");
 const CompetenciaRoutes =  require("./routes/CompetenciaRoutes");
+const JuegoTxtRoutes = require("./routes/JuegoTxtRoutes");
+const CompetenciaTxtRoutes = require("./routes/CompetenciaTxtRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,6 +41,10 @@ app.use(
     CompetenciaRoutes
 );
 
+// Rutas de la Parte 1 ARCHIVOS TXT.
+app.use("/api/juegos", JuegoTxtRoutes);
+app.use("/api/competencias", CompetenciaTxtRoutes);
+
 // Vista 1 - Videojuegos y equipos.
 app.get("/videojuegos", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "videojuegos.html"));
@@ -47,6 +53,16 @@ app.get("/videojuegos", (req, res) => {
 // Vista 2 - Competencias y encuentros.
 app.get("/competencias", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "competencias.html"));
+});
+
+// Vista TXT - Juegos
+app.get("/txt/juegos", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "juegosT.html"));
+});
+
+// Vista TXT - Competencias
+app.get("/txt/competencias", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "competenciasT.html"));
 });
 
 // Vista MongoDB - Juegos

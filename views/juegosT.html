@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Videojuegos TXT</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>
+            <span>Parte 1 - Archivos TXT</span>
+            <span>Juegos de videos y competencias</span>
+            <span>Vista 1 - Videojuegos</span>
+        </h1>
+
+        <div class="navegacion">
+            <a href="/txt/juegos">Videojuegos TXT</a>
+            <a href="/txt/competencias">Competencias TXT</a>
+
+            <a href="/videojuegos">Videojuegos PostgreSQL</a>
+            <a href="/competencias">Competencias PostgreSQL</a>
+
+            <a href="/mongo/juegos">Juegos MongoDB</a>
+            <a href="/mongo/competencias">Competencias MongoDB</a>
+        </div>
+
+        <section class="formulario">
+            <h2>Datos del videojuego</h2>
+            <form id="formVideojuego">
+                <input type="hidden" id="videojuegoId">
+
+                <label for="titulo">Titulo</label>
+                <input type="text" id="titulo" required>
+
+                <label for="categoria">Categoria</label>
+                <input type="text" id="categoria" required>
+
+                <label for="desarrolladora">Desarrolladora</label>
+                <input type="text" id="desarrolladora" required>
+
+                <label for="fechaLanzamiento">Fecha de lanzamiento</label>
+                <input type="date" id="fechaLanzamiento" required>
+
+                <label for="clasificacionEdad">Clasificacion de edad</label>
+                <input type="text" id="clasificacionEdad" required>
+
+                <label for="modalidadJuego">Modalidad de juego</label>
+                <input type="text" id="modalidadJuego" required>
+
+                <label for="estadoVideojuego">Estado</label>
+                <input type="text" id="estadoVideojuego" required>
+
+                <label for="portadaVideojuego">Portada PNG</label>
+                <input type="file" id="portadaVideojuego" accept="image/png">
+
+                <div class="botones">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="btnCancelarVideojuego">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="tabla-contenedor">
+            <h2>Videojuegos registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Titulo</th><th>Categoria</th><th>Desarrolladora</th>
+                        <th>Fecha</th><th>Clasificacion</th><th>Modalidad</th><th>Estado</th>
+                        <th>Portada</th><th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaVideojuegos"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/js/juegosT.js"></script>
+</body>
+</html>

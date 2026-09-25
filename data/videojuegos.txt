@@ -1,0 +1,6 @@
+1;Dota 2;MOBA;Valve;2013-07-09;T;5 contra 5;Activo;
+2;VALORANT;Shooter tactico;Riot Games;2020-06-02;T;5 contra 5;Activo;
+3;Rocket League;Deportes;Psyonix;2015-07-07;E;3 contra 3;Activo;
+4;Counter-Strike 2;Shooter tactico;Valve;2023-09-27;M;5 contra 5;Activo;
+5;League of Legends;MOBA;Riot Games;2009-10-27;T;5 contra 5;Activo;
+6;VALORANT2;MOBA;Valve;2026-09-25;T;5 contra 5;Activo;
