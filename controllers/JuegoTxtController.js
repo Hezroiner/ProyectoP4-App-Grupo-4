@@ -1,48 +1,6 @@
-const JuegoTxtDAO = require("../dao/JuegoTxtDAO");
-const CompetenciaTxtDAO = require("../dao/CompetenciaTxtDAO");
+const JuegoTxtService = require("../services/JuegoTxtService");
 
-const {
-    extraerBase64,
-    serializarImagen,
-    esFecha,
-    leerCampos
-} = require("./txtHelpers");
-
-const CAMPOS = [
-    "titulo",
-    "categoria",
-    "desarrolladora",
-    "fecha_lanzamiento",
-    "clasificacion_edad",
-    "modalidad_juego",
-    "estado_videojuego"
-];
-
-function serializar(juego) {
-    return {
-        ...juego,
-        portada_videojuego: serializarImagen(juego.portada_videojuego)
-    };
-}
-
-// Devuelve el mensaje de error o null si los datos son validos.
-function validar(datos, imagen) {
-    const faltantes = CAMPOS.filter(campo => datos[campo] === "");
-
-    if (faltantes.length > 0) {
-        return `Campos obligatorios: ${faltantes.join(", ")}`;
-    }
-
-    if (!esFecha(datos.fecha_lanzamiento)) {
-        return "La fecha de lanzamiento no es valida";
-    }
-
-    if (imagen === null) {
-        return "La portada no es una imagen valida";
-    }
-
-    return null;
-}
+const service = new JuegoTxtService();
 
 // ==========================================
 // CRUD JUEGOS (videojuegos.txt)
@@ -50,7 +8,7 @@ function validar(datos, imagen) {
 
 const obtenerJuegosTxt = (req, res) => {
     try {
-        res.json(JuegoTxtDAO.obtenerTodos().map(serializar));
+        res.json(service.obtenerTodos());
     } catch (error) {
         console.error(error);
         res.status(500).json({ mensaje: "Error al obtener los videojuegos" });
@@ -59,16 +17,13 @@ const obtenerJuegosTxt = (req, res) => {
 
 const crearJuegoTxt = (req, res) => {
     try {
-        const datos = leerCampos(req.body, CAMPOS);
-        const imagen = extraerBase64(req.body?.portada_videojuego);
-        const errorValidacion = validar(datos, imagen);
+        const resultado = service.crear(req.body);
 
-        if (errorValidacion) {
-            return res.status(400).json({ mensaje: errorValidacion });
+        if (resultado.error) {
+            return res.status(resultado.estado).json({ mensaje: resultado.error });
         }
 
-        const juego = JuegoTxtDAO.crear({ ...datos, portada_videojuego: imagen });
-        res.status(201).json(serializar(juego));
+        res.status(201).json(resultado.juego);
     } catch (error) {
         console.error(error);
         res.status(500).json({ mensaje: "Error al crear el videojuego" });
@@ -77,27 +32,13 @@ const crearJuegoTxt = (req, res) => {
 
 const actualizarJuegoTxt = (req, res) => {
     try {
-        const id = Number(req.params.id);
-        const datos = leerCampos(req.body, CAMPOS);
-        const imagen = extraerBase64(req.body?.portada_videojuego);
-        const errorValidacion = validar(datos, imagen);
+        const resultado = service.actualizar(Number(req.params.id), req.body);
 
-        if (errorValidacion) {
-            return res.status(400).json({ mensaje: errorValidacion });
+        if (resultado.error) {
+            return res.status(resultado.estado).json({ mensaje: resultado.error });
         }
 
-        // Igual que COALESCE en PostgreSQL: sin imagen nueva se conserva la anterior.
-        if (imagen) {
-            datos.portada_videojuego = imagen;
-        }
-
-        const juego = JuegoTxtDAO.actualizar(id, datos);
-
-        if (!juego) {
-            return res.status(404).json({ mensaje: "Videojuego no encontrado" });
-        }
-
-        res.json(serializar(juego));
+        res.json(resultado.juego);
     } catch (error) {
         console.error(error);
         res.status(500).json({ mensaje: "Error al actualizar el videojuego" });
@@ -106,22 +47,10 @@ const actualizarJuegoTxt = (req, res) => {
 
 const eliminarJuegoTxt = (req, res) => {
     try {
-        const id = Number(req.params.id);
+        const resultado = service.eliminar(Number(req.params.id));
 
-        // Equivale a la llave foranea de PostgreSQL: un videojuego con
-        // competencias no se puede eliminar.
-        const tieneCompetencias = CompetenciaTxtDAO
-            .obtenerTodos()
-            .some(competencia => competencia.videojuego_id === id);
-
-        if (tieneCompetencias) {
-            return res.status(409).json({
-                mensaje: "No se puede eliminar: el videojuego tiene competencias relacionadas"
-            });
-        }
-
-        if (!JuegoTxtDAO.eliminar(id)) {
-            return res.status(404).json({ mensaje: "Videojuego no encontrado" });
+        if (resultado.error) {
+            return res.status(resultado.estado).json({ mensaje: resultado.error });
         }
 
         res.json({ mensaje: "Videojuego eliminado correctamente" });
